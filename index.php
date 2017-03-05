@@ -6,7 +6,7 @@
 		 content="width=device-width, initial-scale=1, user-scalable=yes, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie-edge">
 
-	<title>AngularType Skeleton</title>
+	<title>AngularType Bug Tracker</title>
 
 	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css">
