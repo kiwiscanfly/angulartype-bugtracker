@@ -1,12 +1,13 @@
 // Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BugModule } from './bug/bug.module';
 
 // Component
 import { AppComponent } from './app.component';
 
 @NgModule({
-	imports: [ BrowserModule ],
+	imports: [ BrowserModule, BugModule ],
 	declarations: [ AppComponent ],
 	bootstrap: [ AppComponent ]
 })
