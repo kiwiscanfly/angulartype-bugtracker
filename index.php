@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="/angulartype-bugtracker/">
 	<meta charset="utf-8">
 	<meta name="viewport"
 		 content="width=device-width, initial-scale=1, user-scalable=yes, shrink-to-fit=no">

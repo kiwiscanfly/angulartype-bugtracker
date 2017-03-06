@@ -7,18 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var BugModule = (function () {
-    function BugModule() {
+var router_1 = require("@angular/router");
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    return BugModule;
+    return AppRoutingModule;
 }());
-BugModule = __decorate([
+AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [],
-        declarations: [],
-        exports: [],
-        providers: []
+        imports: [
+            router_1.RouterModule.forRoot([])
+        ],
+        exports: [
+            router_1.RouterModule
+        ]
     })
-], BugModule);
-exports.BugModule = BugModule;
-//# sourceMappingURL=bug.module.js.map
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map

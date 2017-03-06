@@ -7,16 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var BugListComponent = (function () {
+    function BugListComponent() {
     }
-    return AppComponent;
+    return BugListComponent;
 }());
-AppComponent = __decorate([
+BugListComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        template: '<router-outlet></router-outlet>'
+        moduleId: module.id,
+        selector: 'bug-list',
+        templateUrl: 'bug-list.component.html',
+        styleUrls: ['bug-list.component.css']
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], BugListComponent);
+exports.BugListComponent = BugListComponent;
+//# sourceMappingURL=bug-list.component.js.map

@@ -6,7 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Modules
 var core_1 = require("@angular/core");
+var shared_module_1 = require("../shared/shared.module");
+var bug_routing_module_1 = require("./bug-routing-module");
+// Component
+var bug_list_component_1 = require("./bug-list/bug-list.component");
 var BugModule = (function () {
     function BugModule() {
     }
@@ -14,8 +19,13 @@ var BugModule = (function () {
 }());
 BugModule = __decorate([
     core_1.NgModule({
-        imports: [],
-        declarations: [],
+        imports: [
+            shared_module_1.SharedModule,
+            bug_routing_module_1.BugRoutingModule
+        ],
+        declarations: [
+            bug_list_component_1.BugListComponent
+        ],
         exports: [],
         providers: []
     })
