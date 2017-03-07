@@ -7,24 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var bug_list_component_1 = require("./bug-list/bug-list.component");
-var BugRoutingModule = (function () {
-    function BugRoutingModule() {
+var NavbarComponent = (function () {
+    function NavbarComponent() {
     }
-    return BugRoutingModule;
+    return NavbarComponent;
 }());
-BugRoutingModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            router_1.RouterModule.forChild([
-                { path: '', redirectTo: 'bugs', pathMatch: 'full' },
-                { path: 'bugs', component: bug_list_component_1.BugListComponent },
-                { path: '**', redirectTo: 'bugs' }
-            ])
-        ],
-        exports: []
+NavbarComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'navbar',
+        templateUrl: 'navbar.component.html',
+        styleUrls: ['navbar.component.css']
     })
-], BugRoutingModule);
-exports.BugRoutingModule = BugRoutingModule;
-//# sourceMappingURL=bug-routing-module.js.map
+], NavbarComponent);
+exports.NavbarComponent = NavbarComponent;
+//# sourceMappingURL=navbar.component.js.map

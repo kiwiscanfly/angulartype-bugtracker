@@ -13,6 +13,7 @@ var bug_module_1 = require("./bug/bug.module");
 var app_routing_module_1 = require("./app-routing.module");
 // Component
 var app_component_1 = require("./app.component");
+var navbar_component_1 = require("./navbar/navbar.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +26,7 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             bug_module_1.BugModule
         ],
-        declarations: [app_component_1.AppComponent],
+        declarations: [app_component_1.AppComponent, navbar_component_1.NavbarComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
