@@ -28,6 +28,17 @@ var BugService = (function () {
             });
         });
     };
+    BugService.prototype.addBug = function (bug) {
+        var newBugRef = this.bugsDbRef.push();
+        newBugRef.set({
+            title: bug.title,
+            status: bug.status,
+            severity: bug.severity,
+            description: bug.description,
+            createdBy: 'Daryl',
+            createdDate: Date.now()
+        }).catch(function (error) { return console.error("Unable to add bug to Firebase: ", error); });
+    };
     return BugService;
 }());
 BugService = __decorate([

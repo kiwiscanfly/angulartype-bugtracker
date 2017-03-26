@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+$allowed_paths = array(
+	'bugs',
+);
+
+$request_uri = $_SERVER["REQUEST_URI"];
+
+$parts      = explode('/', $request_uri);
+$last_index = count($parts)-1;
+
+//strip out the empty values
+$url_args = array();
+foreach ($parts as $indx => $prt) {
+	if (!empty($prt)) {
+		$url_args[] = str_replace('..', '', htmlentities($prt));
+	}
+}
+
+if (isset($url_args[1]) && !in_array($url_args[1], $allowed_paths)) {
+	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+	die('404 "'.$url_args[1].'" not in allowed paths '.print_r($allowed_paths, true));
+}
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<base href="/angulartype-bugtracker/">
