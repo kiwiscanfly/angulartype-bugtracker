@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var bug_module_1 = require("./bug/bug.module");
 var app_routing_module_1 = require("./app-routing.module");
+var core_module_1 = require("./core/core.module");
 // Component
 var app_component_1 = require("./app.component");
 var navbar_component_1 = require("./navbar/navbar.component");
@@ -24,7 +25,8 @@ AppModule = __decorate([
         imports: [
             app_routing_module_1.AppRoutingModule,
             platform_browser_1.BrowserModule,
-            bug_module_1.BugModule
+            bug_module_1.BugModule,
+            core_module_1.CoreModule.forRoot()
         ],
         declarations: [app_component_1.AppComponent, navbar_component_1.NavbarComponent],
         bootstrap: [app_component_1.AppComponent]

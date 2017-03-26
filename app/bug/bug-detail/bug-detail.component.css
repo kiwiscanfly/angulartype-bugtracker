@@ -1,0 +1,18 @@
+#severity-dropdown {
+	margin: 1rem 0 1.5rem 0;
+}
+.modal-footer {
+	border: none;
+	text-align: center;
+	padding-bottom: 4rem;
+}
+/* VALIDATION */
+textarea.ng-invalid.ng-dirty {
+	border-color: #c62828;
+	transition: border-color 0.2s ease;
+}
+#title-field.ng-invalid.ng-dirty {
+	border-left: 5px solid #c62828;
+	padding-left: 5px;
+	transition: border-width 0.2s ease;
+}
