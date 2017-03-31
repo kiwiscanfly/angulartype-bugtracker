@@ -14,21 +14,28 @@ var forms_1 = require("@angular/forms");
 var forbidden_string_validator_1 = require("../../shared/validation/forbidden-string.validator");
 var bug_service_1 = require("../service/bug.service");
 var bug_1 = require("../model/bug");
+var constants_1 = require("../../shared/constant/constants");
 var BugDetailComponent = (function () {
     function BugDetailComponent(formBuilder, bugService) {
         this.formBuilder = formBuilder;
         this.bugService = bugService;
-        this.modalId = "bugModal";
         this.forbiddenStrings = /(shit |fuck |cunt )/;
+        this.modalId = "bugModal";
+        this.statuses = constants_1.STATUS;
+        this.severities = constants_1.SEVERITY;
+        this.statusArr = [];
+        this.severityArr = [];
         this.currentBug = null;
         this.cleanBug();
     }
     BugDetailComponent.prototype.ngOnInit = function () {
+        this.statusArr = Object.keys(this.statuses).filter(Number);
+        this.severityArr = Object.keys(this.severities).filter(Number);
         this.configureForm();
     };
     BugDetailComponent.prototype.configureForm = function (bug) {
         if (bug) {
-            this.currentBug = bug;
+            this.currentBug = new bug_1.Bug(bug.id, bug.title, bug.status, bug.severity, bug.description, bug.createdBy, bug.createdDate, bug.updatedBy, bug.updatedDate);
         }
         this.bugForm = this.formBuilder.group({
             title: [this.currentBug.title, [forms_1.Validators.required, forbidden_string_validator_1.forbiddenStringValidator(this.forbiddenStrings)]],
@@ -38,26 +45,28 @@ var BugDetailComponent = (function () {
         });
     };
     BugDetailComponent.prototype.submitForm = function () {
-        this.addBug();
-        jQuery('#' + this.modalId).modal('hide');
-        this.clearForm();
-    };
-    BugDetailComponent.prototype.addBug = function () {
         this.currentBug.title = this.bugForm.value['title'];
         this.currentBug.status = this.bugForm.value['status'];
         this.currentBug.severity = this.bugForm.value['severity'];
         this.currentBug.description = this.bugForm.value['description'];
-        this.bugService.addBug(this.currentBug);
+        if (this.currentBug.id == null) {
+            this.bugService.addBug(this.currentBug);
+        }
+        else {
+            this.bugService.updateBug(this.currentBug);
+        }
+        jQuery('#' + this.modalId).modal('hide');
+        this.clearForm();
     };
     BugDetailComponent.prototype.clearForm = function () {
-        this.bugForm.reset({ title: null, status: 1, severity: 4, description: null });
+        this.bugForm.reset({ title: null, status: this.statuses.Logged, severity: this.severities.Medium, description: null });
         this.cleanBug();
     };
     BugDetailComponent.prototype.cleanBug = function () {
         this.currentBug = new bug_1.Bug(null, // id
         null, // title
-        1, // status
-        4, // severity
+        this.statuses.Logged, // status
+        this.severities.Medium, // severity
         null, // description
         null, // createdBy
         null, // createdDate

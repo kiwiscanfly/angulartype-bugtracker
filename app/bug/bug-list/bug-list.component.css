@@ -13,3 +13,19 @@ td {
 td {
 	border-bottom: .5px solid rgba(52,67,75,.1);
 }
+
+#row-top {
+	padding-top: 1em;
+}
+
+#new-bug-wrap button {
+	float: right;
+}
+
+#bug-list {
+	width: 100%;
+}
+
+#bug-list tbody > tr {
+	cursor: pointer;
+}

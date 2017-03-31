@@ -5,6 +5,7 @@ import { forbiddenStringValidator } from '../../shared/validation/forbidden-stri
 import { BugService } from '../service/bug.service';
 
 import { Bug } from '../model/bug';
+import { STATUS, SEVERITY } from '../../shared/constant/constants';
 
 @Component({
 	moduleId: module.id,
@@ -13,9 +14,14 @@ import { Bug } from '../model/bug';
 	styleUrls: [ 'bug-detail.component.css' ]
 })
 export class BugDetailComponent implements OnInit {
+	private forbiddenStrings = /(shit |fuck |cunt )/;
 	private modalId = "bugModal"
 	private bugForm: FormGroup;
-	private forbiddenStrings = /(shit |fuck |cunt )/;
+	private statuses = STATUS;
+	private severities = SEVERITY;
+	private statusArr: string[] = [];
+	private severityArr: string[] = [];
+	
 	@Input() currentBug: Bug = null;
 
 	constructor(private formBuilder: FormBuilder, private bugService: BugService) {
@@ -23,13 +29,26 @@ export class BugDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.statusArr = Object.keys(this.statuses).filter(Number);
+		this.severityArr = Object.keys(this.severities).filter(Number);
+
 		this.configureForm();
 	}
 
 	configureForm(bug?: Bug) {
 
 		if (bug) {
-			this.currentBug = bug;
+			this.currentBug = new Bug(
+				bug.id,
+				bug.title,
+				bug.status,
+				bug.severity,
+				bug.description,
+				bug.createdBy,
+				bug.createdDate,
+				bug.updatedBy,
+				bug.updatedDate
+			);
 		}
 
 		this.bugForm = this.formBuilder.group({
@@ -41,21 +60,23 @@ export class BugDetailComponent implements OnInit {
 	}
 
 	submitForm() {
-		this.addBug();
-		jQuery('#'+this.modalId).modal('hide');
-		this.clearForm();
-	}
-
-	addBug() {
 		this.currentBug.title = this.bugForm.value['title'];
 		this.currentBug.status = this.bugForm.value['status'];
 		this.currentBug.severity = this.bugForm.value['severity'];
 		this.currentBug.description = this.bugForm.value['description'];
-		this.bugService.addBug(this.currentBug);
+
+		if ( this.currentBug.id == null ) {
+			this.bugService.addBug(this.currentBug);
+		} else {
+			this.bugService.updateBug(this.currentBug);
+		}
+		
+		jQuery('#'+this.modalId).modal('hide');
+		this.clearForm();
 	}
 
 	clearForm() {
-		this.bugForm.reset({title: null, status: 1, severity: 4, description: null});
+		this.bugForm.reset({title: null, status: this.statuses.Logged, severity: this.severities.Medium, description: null});
 		this.cleanBug();
 	}
 
@@ -63,8 +84,8 @@ export class BugDetailComponent implements OnInit {
 		this.currentBug = new Bug(
 			null, // id
 			null, // title
-			1, // status
-			4, // severity
+			this.statuses.Logged, // status
+			this.severities.Medium, // severity
 			null, // description
 			null, // createdBy
 			null, // createdDate

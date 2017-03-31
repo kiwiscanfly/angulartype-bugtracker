@@ -22,7 +22,20 @@ var BugService = (function () {
         return Observable_1.Observable.create(function (obs) {
             _this.bugsDbRef.on('child_added', function (bug) {
                 var newBug = bug.val();
+                newBug.id = bug.key;
                 obs.next(newBug);
+            }, function (err) {
+                obs.throw(err);
+            });
+        });
+    };
+    BugService.prototype.changedListener = function () {
+        var _this = this;
+        return Observable_1.Observable.create(function (obs) {
+            _this.bugsDbRef.on('child_changed', function (bug) {
+                var updatedBug = bug.val();
+                updatedBug.id = bug.key;
+                obs.next(updatedBug);
             }, function (err) {
                 obs.throw(err);
             });
@@ -38,6 +51,13 @@ var BugService = (function () {
             createdBy: 'Daryl',
             createdDate: Date.now()
         }).catch(function (error) { return console.error("Unable to add bug to Firebase: ", error); });
+    };
+    BugService.prototype.updateBug = function (bug) {
+        var currentBugRef = this.bugsDbRef.child(bug.id);
+        bug.id = null;
+        bug.updatedBy = "Daryl";
+        bug.updatedDate = Date.now();
+        currentBugRef.update(bug);
     };
     return BugService;
 }());

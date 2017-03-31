@@ -7,27 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var common_1 = require("@angular/common");
-var status_pipe_1 = require("./pipe/status.pipe");
-var severity_pipe_1 = require("./pipe/severity.pipe");
-var SharedModule = (function () {
-    function SharedModule() {
+var constants_1 = require("../constant/constants");
+var StatusPipe = (function () {
+    function StatusPipe() {
+        this.statuses = constants_1.STATUS;
     }
-    return SharedModule;
+    StatusPipe.prototype.transform = function (statusNum) {
+        return this.statuses[statusNum];
+    };
+    return StatusPipe;
 }());
-SharedModule = __decorate([
-    core_1.NgModule({
-        imports: [common_1.CommonModule],
-        declarations: [
-            severity_pipe_1.SeverityPipe,
-            status_pipe_1.StatusPipe
-        ],
-        exports: [
-            common_1.CommonModule,
-            severity_pipe_1.SeverityPipe,
-            status_pipe_1.StatusPipe
-        ]
+StatusPipe = __decorate([
+    core_1.Pipe({
+        name: 'status'
     })
-], SharedModule);
-exports.SharedModule = SharedModule;
-//# sourceMappingURL=shared.module.js.map
+], StatusPipe);
+exports.StatusPipe = StatusPipe;
+//# sourceMappingURL=status.pipe.js.map
