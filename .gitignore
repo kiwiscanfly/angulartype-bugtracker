@@ -1,2 +1,4 @@
 /app/core/constant/constants.ts
 /app/core/constant/constants.js
+/node_modules
+/node_modules/*
