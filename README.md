@@ -1,7 +1,7 @@
 # angulartype-bugtracker
 
-Angular typescript bug tracker with firebase back-end.  Created as part of  [
-Angular 2 & Typescript For Beginners on Devslopes](https://devslopes.com/course/589b9d53d211ad4ffa5cafdb)
+Angular Typescript bug tracker with a Firebase back-end.  Created as part of  [
+Angular 2 & Typescript For Beginners on Devslopes](https://devslopes.com/course/589b9d53d211ad4ffa5cafdb).
 
 ## License
 Provided as is, be nice. @ me if you find it useful ([@darylmilne](https://twitter.com/darylmilne)) :) Pull requests welcome
